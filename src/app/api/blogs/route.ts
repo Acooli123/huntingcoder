@@ -9,25 +9,24 @@ export async function GET() {
     const files = await fs.readdir(folderPath);
     console.log("Files found:", files);
 
-    const allBlogs = await Promise.all(
-      files
-        .filter(file => file.endsWith('.json'))
-        .map(async (file) => {
-          const filePath = path.join(folderPath, file);
-          console.log("Reading file:", filePath);
+    let blogsArray: any[] = []; // Create empty array
 
-          const content = await fs.readFile(filePath, 'utf-8');
-          try {
-            return JSON.parse(content);
-          } catch (err) {
-            console.error(`Invalid JSON in file: ${file}`, err);
-            return null;
-          }
-        })
-    );
+    for (const file of files) {
+      if (file.endsWith('.json')) {
+        const filePath = path.join(folderPath, file);
+        console.log("Reading file:", filePath);
 
-    const validBlogs = allBlogs.filter(blog => blog !== null);
-    return new Response(JSON.stringify(validBlogs), {
+        const content = await fs.readFile(filePath, 'utf-8');
+        try {
+          const parsed = JSON.parse(content);
+          blogsArray.push(parsed); // Push each parsed JSON into array
+        } catch (err) {
+          console.error(`Invalid JSON in file: ${file}`, err);
+        }
+      }
+    }
+
+    return new Response(JSON.stringify(blogsArray), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
