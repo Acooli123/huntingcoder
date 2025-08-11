@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Page() {
+ // console.log(props);
+  
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
@@ -39,27 +41,33 @@ export default function Page() {
       </h1>
 
       <div className="blogs">
-        {blogs.map((blog, index) => (
-          <div key={blog.slug || index} className="blogItem">
-            <Link href={`/blogpost/${blog.slug}`}>
-              <h1 className="text-2xl sm:text-lg font-bold font-mono tracking-tight text-center sm:text-left">
-                {blog.title}
-              </h1>
-            </Link>
-            <p>{blog.description}</p>
-          </div>
-        ))}
+        {blogs.map((blog, index) => {
+          // Extract the last part of the slug (after the last '-')
+          const shortSlug = blog.slug?.split("-").pop() || blog.slug;
+
+          return (
+            <div key={blog.slug || index} className="blogItem">
+              <Link href={`/blogpost/${shortSlug}`}>
+                <h1 className="text-2xl sm:text-lg font-bold font-mono tracking-tight text-center sm:text-left">
+                  {blog.title}
+                </h1>
+              </Link>
+              <p>{blog.description}</p>
+            </div>
+          );
+        })}
       </div>
 
       <div className="mt-10">
         Click it:{" "}
         <Link
           className="text-blue-400 align-right justify-end text-right"
-          href="/blogs/some-slug"
+           href="/blogs/some-slug"
         >
           <b>Some-slug</b>
         </Link>
       </div>
     </div>
   );
+
 }
