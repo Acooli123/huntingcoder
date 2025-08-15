@@ -14,44 +14,45 @@ export default function Contact() {
 
   const [message, setMessage] = useState('');
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
+ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { name, value, type, checked } = e.target;
+  setFormData((prev) => ({
+    ...prev,
+    [name]: type === "checkbox" ? checked : value,
+  }));
+};
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
 
-    try {
-      const res = await fetch('/api/contacts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+  try {
+    const res = await fetch("/api/contacts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (res.ok) {
+      setMessage("Form submitted successfully!");
+      setFormData({
+        name: "",
+        mobile: "",
+        age: "",
+        email: "",
+        password: "",
+        check: false,
       });
-
-      if (res.ok) {
-        setMessage('Form submitted successfully!');
-        setFormData({
-          name: '',
-          mobile: '',
-          age: '',
-          email: '',
-          password: '',
-          check: false,
-        });
-      } else {
-        setMessage('Something went wrong, please try again.');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setMessage('Server error, please try again later.');
+    } else {
+      setMessage("Something went wrong, please try again.");
     }
-  };
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    setMessage("Server error, please try again later.");
+  }
+};
+
 
   return (
     <div className="min-h-screen w-screen flex items-center justify-center bg-gray-300 overflow-hidden">
