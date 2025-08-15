@@ -13,7 +13,6 @@ export default function Page() {
         setBlogs(parsed);
       })
       .catch(() => {
-        // Fallback demo blogs if API fails
         setBlogs([
           {
             slug: "hunting-tips-2025",
@@ -44,37 +43,41 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="w-screen min-h-screen flex flex-col items-center py-10 px-4 bg-gradient-to-b from-green-50 to-green-100">
-      <h1 className="text-4xl sm:text-3xl italic font-serif font-bold mb-8 text-green-800">
+    <div className="w-full min-h-screen flex flex-col items-center py-8 px-4 sm:px-6 md:px-10 bg-gradient-to-b from-green-50 to-green-100">
+      {/* Title */}
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold italic mb-10 text-green-800 text-center">
         HuntingCoder Blogs
       </h1>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
+      {/* Responsive Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full max-w-7xl">
         {blogs.map((blog, index) => {
           const shortSlug = blog.slug?.split("-").pop() || blog.slug;
 
           return (
             <div
               key={blog.slug || index}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition duration-300 flex flex-col"
             >
               {blog.image && (
                 <img
                   src={blog.image}
                   alt={blog.title}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-48 sm:h-56 md:h-64 object-cover"
                 />
               )}
-              <div className="p-6">
+              <div className="p-4 sm:p-6 flex flex-col flex-1">
                 <Link href={`/blogpost/${shortSlug}`}>
-                  <h2 className="text-xl font-bold text-green-700 hover:underline">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-green-700 hover:underline">
                     {blog.title}
                   </h2>
                 </Link>
-                <p className="text-gray-600 mt-3">{blog.description}</p>
+                <p className="text-gray-600 mt-2 text-sm sm:text-base flex-1">
+                  {blog.description}
+                </p>
                 <Link
                   href={`/blogpost/${shortSlug}`}
-                  className="inline-block mt-4 text-green-600 font-semibold hover:text-green-800"
+                  className="inline-block mt-4 text-green-600 font-semibold hover:text-green-800 text-sm sm:text-base"
                 >
                   Read More →
                 </Link>

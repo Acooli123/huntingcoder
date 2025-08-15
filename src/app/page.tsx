@@ -1,28 +1,40 @@
+"use client";
+
 import Image from "next/image";
 import Head from "next/head";
 import "./globals.css";
-import Link from 'next/link'
+import Link from "next/link";
 import Script from "next/script";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <style className="jsx">
-        {`
-          .blogs {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-top: 20px;
-          }
-          .blogItem {
-            padding: 16px;
-            border-radius: 8px;
-            background-color: #f0d5d5ff;
-            box-shadow: 0 3px 5px rgba(0, 0, 0, 3);
-          }
-        `} 
-      </style>
+    <div className="font-sans flex items-center justify-center w-screen h-screen overflow-hidden bg-gray-100">
+      <style jsx>{`
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          overflow: hidden; /* Prevent page scrollbars */
+        }
+        .blogs {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          margin-top: 1.25rem;
+        }
+        .blogItem {
+          padding: 1rem;
+          border-radius: 0.5rem;
+          background-color: #f0d5d5ff;
+          box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+          transition: transform 0.2s ease;
+        }
+        .blogItem:hover {
+          transform: translateY(-3px);
+        }
+      `}</style>
+
       <Head>
         <title>Hunting Coder</title>
         <meta
@@ -31,45 +43,45 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <Script src="/sc.js" strategy="lazyOnload"></Script> */}
-    
 
-      <main className="flex flex-col gap-[8px] row-start-2 items-center sm:items-start">
-        <h1 className="text-4xl sm:text-5xl font-bold -mt-30 tracking-tight text-center sm:text-left">
+      <main className="flex flex-col items-center gap-4 max-h-[90vh] overflow-hidden px-4">
+        {/* Title */}
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-center">
           Hunting Coder
         </h1>
-        <div className="flex items-center justify-center mt-2 rounded-lg overflow-hidden">
-        <img src="/coder.jpg" alt="" width="500px" height="100px"/>
+
+        {/* Profile Circle */}
+        <div className="flex items-center justify-center w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 border-4 border-blue-500 rounded-full overflow-hidden shadow-lg">
+          <img
+            src="/coder.jpg"
+            alt="Coder"
+            className="w-full h-full object-cover"
+          />
         </div>
-        <p className="translate-x-10 text-sky-500">
-          ---A blog for huting coders by a coder
+
+        {/* Tagline */}
+        <p className="text-sky-500 text-sm sm:text-base md:text-lg">
+          &lt;HuntingCoder/&gt;
         </p>
 
-        <div className="blogs">
-          <h2 className="test-2xl md:text-lg italic font-serif font-bold">
+        {/* Blog Section */}
+        <div className="blogs w-full max-w-lg">
+          <h2 className="text-lg sm:text-xl md:text-2xl italic font-serif font-bold text-center">
             Popular Blogs
           </h2>
-          <div className="blogItem">
-            <h1 className="text-2xl mt-5 sm:text-lg font-bold font-mono tracking-tight text-center sm:text-left">
-              How to Learn JavaScript in 2025?
-            </h1>
-            <p>JavaScript is a language used to design logic for the web.</p>
-          </div>
-          <div className="blogItem">
-            <h1 className="text-2xl mt-5 sm:text-lg font-bold font-mono tracking-tight text-center sm:text-left">
-              How to Learn JavaScript in 2025?
-            </h1>
-            <p>JavaScript is a language used to design logic for the web.</p>
-          </div>
-          <div className="blogItem">
-            <h1 className="text-2xl mt-5 sm:text-lg font-bold font-mono tracking-tight text-center sm:text-left">
-              How to Learn JavaScript in 2025?
-            </h1>
-            <p>JavaScript is a language used to design logic for the web.</p>
-          </div>
+
+          {[1, 2, 3].map((_, index) => (
+            <div key={index} className="blogItem">
+              <h1 className="text-base sm:text-lg font-bold font-mono text-center">
+                How to Learn JavaScript in 2025?
+              </h1>
+              <p className="text-sm sm:text-base text-center">
+                JavaScript is a language used to design logic for the web.
+              </p>
+            </div>
+          ))}
         </div>
       </main>
-
     </div>
   );
 }

@@ -44,29 +44,29 @@ export default function Services() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 px-6 py-12">
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 px-4 sm:px-6 py-8 sm:py-12">
       {/* Page Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-extrabold text-gray-800 mb-4">
+      <div className="text-center mb-10 sm:mb-12">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
           Our <span className="text-blue-600">Services</span>
         </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-2">
           At HuntingCoder, we provide top-notch coding and development services designed to help you bring your ideas to life.
         </p>
       </div>
 
       {/* Services Grid */}
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+      <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
         {services.map((service, index) => (
           <div
             key={index}
-            className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-2xl transition duration-300"
+            className="bg-white rounded-2xl shadow-md hover:shadow-2xl transition duration-300 p-6 flex flex-col items-center text-center"
           >
             <div className="flex justify-center mb-4">{service.icon}</div>
-            <h2 className="text-xl font-bold text-gray-800 mb-2">
+            <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">
               {service.title}
             </h2>
-            <p className="text-gray-600">{service.description}</p>
+            <p className="text-gray-600 text-sm sm:text-base">{service.description}</p>
           </div>
         ))}
       </div>

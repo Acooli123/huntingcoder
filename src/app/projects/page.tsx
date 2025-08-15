@@ -41,37 +41,37 @@ export default function Projects() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 px-6 py-12">
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 px-4 sm:px-6 py-12">
       {/* Page Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-extrabold text-gray-800 mb-4">
+      <div className="text-center mb-12 px-4">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800 mb-4 leading-tight">
           HuntingCoder <span className="text-blue-600">Projects</span>
         </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
           Explore some of the exciting projects we’ve built to make coding easier, more accessible, and fun for everyone.
         </p>
       </div>
 
       {/* Project Cards */}
-      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+      <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
         {projects.map((project, index) => (
           <div
             key={index}
             className="bg-white rounded-2xl shadow-lg p-6 flex flex-col hover:shadow-2xl transition duration-300"
           >
-            <h2 className="text-2xl font-bold text-blue-600 mb-3">
+            <h2 className="text-xl sm:text-2xl font-bold text-blue-600 mb-3">
               {project.title}
             </h2>
-            <p className="text-gray-700 flex-grow">{project.description}</p>
+            <p className="text-gray-700 flex-grow text-sm sm:text-base">{project.description}</p>
             <div className="mt-4">
-              <span className="text-sm font-semibold text-gray-500">
+              <span className="text-xs sm:text-sm font-semibold text-gray-500">
                 Tech Stack:
               </span>
               <div className="flex flex-wrap gap-2 mt-1">
                 {project.tech.map((t, i) => (
                   <span
                     key={i}
-                    className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs"
+                    className="bg-blue-100 text-blue-700 px-2 sm:px-3 py-1 rounded-full text-xs"
                   >
                     {t}
                   </span>
@@ -80,7 +80,7 @@ export default function Projects() {
             </div>
             <a
               href={project.link}
-              className="mt-6 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+              className="mt-6 inline-block text-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm sm:text-base"
             >
               View Project
             </a>

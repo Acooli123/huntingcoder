@@ -14,7 +14,6 @@ export default function Contact() {
 
   const [message, setMessage] = useState('');
 
-  // ✅ Move inside component
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -55,12 +54,12 @@ export default function Contact() {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-300">
+    <div className="min-h-screen w-screen flex items-center justify-center bg-gray-300 overflow-hidden">
       <form
-        className="p-6 shadow-lg rounded-xl bg-white w-full max-w-md"
+        className="p-6 shadow-lg rounded-xl bg-white w-full max-w-md sm:max-w-lg md:max-w-md lg:max-w-sm"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-2xl font-bold mb-4">Contact Page</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center">Contact Page</h1>
 
         {/* Name */}
         <div className="mb-3">
@@ -160,13 +159,13 @@ export default function Contact() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-200"
         >
           Submit
         </button>
 
         {message && (
-          <p className="mt-4 text-sm text-green-600">{message}</p>
+          <p className="mt-4 text-sm text-green-600 text-center">{message}</p>
         )}
       </form>
     </div>
