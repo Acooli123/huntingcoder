@@ -9,7 +9,7 @@ export default function Navbar() {
     <div className="w-full fixed top-0 z-50">
       <nav className="flex items-center justify-between bg-blue-200 py-4 px-6 drop-shadow-lg">
         {/* Logo */}
-        <div className="text-lg font-bold">MySite</div>
+        <div className="text-lg font-bold">HuntingCoder</div>
 
         {/* Hamburger Icon for Mobile */}
         <button
