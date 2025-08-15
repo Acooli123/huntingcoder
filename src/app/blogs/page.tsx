@@ -3,13 +3,20 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
+type Blog = {
+  slug: string;
+  title: string;
+  description: string;
+  image?: string;
+};
+
 export default function Page() {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState<Blog[]>([]); // ✅ Typed array
 
   useEffect(() => {
     fetch("http://localhost:3000/api/blogs")
       .then((a) => a.json())
-      .then((parsed) => {
+      .then((parsed: Blog[]) => {
         setBlogs(parsed);
       })
       .catch(() => {
@@ -44,12 +51,10 @@ export default function Page() {
 
   return (
     <div className="w-full min-h-screen flex flex-col items-center py-8 px-4 sm:px-6 md:px-10 bg-gradient-to-b from-green-50 to-green-100">
-      {/* Title */}
       <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold italic mb-10 text-green-800 text-center">
         HuntingCoder Blogs
       </h1>
 
-      {/* Responsive Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 w-full max-w-7xl">
         {blogs.map((blog, index) => {
           const shortSlug = blog.slug?.split("-").pop() || blog.slug;
